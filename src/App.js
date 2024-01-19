@@ -1,15 +1,20 @@
 import "./App.css";
-import Banner from "./components/Banner";
+import { Routes, Route } from "react-router";
+
 import NavBar from "./components/NavBar";
-import PostData from "./components/PostData";
+import Details from "./components/Details";
+import { BrowserRouter } from "react-router-dom";
+import Banner from "./components/Banner";
 
 function App() {
   return (
-    <div>
-      <NavBar />
-      <Banner />
-      <PostData />
-    </div>
+    <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Banner />} />
+          <Route path="/details/:id" element={<Details />} />
+        </Routes>
+    </BrowserRouter>
   );
 }
 

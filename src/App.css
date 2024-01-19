@@ -1,38 +1,37 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@400;500;600;800&display=swap');
+
+*{
+  font-family: 'Shantell Sans', cursive;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* navbar  */
+.navbar a{
+    color: black;
+    font-weight: 600;
+    margin: 0 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar button{
+    font-weight: 600;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* banner  */
+.banner h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+.banner p {
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
-.App-link {
-  color: #61dafb;
+/* card  */
+.main-card .card:hover{
+    background-color: #ffecec;
+    color: #ff0000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
