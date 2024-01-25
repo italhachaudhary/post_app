@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const data = [
+export let data = [
   {
     userId: 1,
     id: 1,
@@ -615,15 +615,14 @@ export const data = [
 
 export default function PostData() {
   const [data2, setData2] = useState(data);
-
-  const deleteCard = (index) => {
-    const newData = data2.filter((_, i) => i !== index);
+  const deleteCard = (id) => {
+    const newData = data2.filter((current) => current.id !== id);
     setData2(newData);
   };
 
   return (
     <div className="container main-card">
-      {data.map((post, index) => (
+      {data2.map((post, index) => (
         <div className="card mb-3" key={post.id}>
           <div className="card-body">
             <h3 className="card-title">{post.title} </h3>
@@ -634,7 +633,7 @@ export default function PostData() {
             <button
               className="btn btn-secondary ms-2"
               onClick={() => {
-                deleteCard(index);
+                deleteCard(post.id);
               }}
             >
               Delete
