@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function PostData() {
   const [data2, setData2] = useState([]);
+  const [confirm, setConfirm] = useState(false);
+
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
@@ -13,6 +14,14 @@ export default function PostData() {
   const deleteCard = (id) => {
     const newData = data2.filter((current) => current.id !== id);
     setData2(newData);
+  };
+
+  const confirmMessage = () => {
+    setConfirm(true);
+  };
+
+  const hideConfirmMessage = () => {
+    setConfirm(false);
   };
 
   return (
@@ -29,20 +38,32 @@ export default function PostData() {
                 <button className="btn btn-success">View Details</button>
               </Link>
               <button
-                className="btn btn-secondary ms-2"
+                className="btn btn-secondary ms-2 delete-btn"
                 onClick={() => {
-                  deleteCard(post.id);
+                  confirmMessage();
                 }}
               >
                 Delete
               </button>
             </div>
           </div>
-          <div className="mb-2 hide">
-            <strong>Are you sure ?</strong>
-            <button className="btn btn-danger ms-2 ">Yes</button>
-            <button className="btn btn-primary ms-2 ">No</button>
-          </div>
+          {confirm && (
+            <div className="mb-2">
+              <strong>Are you sure ?</strong>
+              <button
+                className="btn btn-danger ms-2"
+                onClick={() => deleteCard(post.id)}
+              >
+                Yes
+              </button>
+              <button
+                className="btn btn-primary ms-2"
+                onClick={() => hideConfirmMessage()}
+              >
+                No
+              </button>
+            </div>
+          )}
         </>
       ))}
     </div>
