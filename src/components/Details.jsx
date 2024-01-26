@@ -1,11 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { data } from "../components/PostData";
+import { useLocation } from "react-router";
 
 export default function Details() {
-  const { id } = useParams();
-  const post = data.find((post) => post.id == id);
-
+  const location = useLocation();
+  const post = location.state.data2;
   return (
     <div>
       <div className="container">
