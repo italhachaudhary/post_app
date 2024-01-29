@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export default function PostData() {
   const [data2, setData2] = useState([]);
   const [confirm, setConfirm] = useState(false);
+  const [postIdToDelete, setPostIdToDelete] = useState(null);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -14,14 +15,17 @@ export default function PostData() {
   const deleteCard = (id) => {
     const newData = data2.filter((current) => current.id !== id);
     setData2(newData);
+    setPostIdToDelete(null);
   };
 
-  const confirmMessage = () => {
+  const confirmMessage = (id) => {
+    setPostIdToDelete(id);
     setConfirm(true);
   };
 
   const hideConfirmMessage = () => {
     setConfirm(false);
+    setPostIdToDelete(null);
   };
 
   return (
@@ -40,14 +44,14 @@ export default function PostData() {
               <button
                 className="btn btn-secondary ms-2 delete-btn"
                 onClick={() => {
-                  confirmMessage();
+                  confirmMessage(post.id);
                 }}
               >
                 Delete
               </button>
             </div>
           </div>
-          {confirm && (
+          {confirm && postIdToDelete === post.id && (
             <div className="mb-2">
               <strong>Are you sure ?</strong>
               <button
