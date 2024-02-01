@@ -30,6 +30,9 @@ export default function PostData() {
 
   return (
     <div className="container main-card">
+      <Link to="/addpost">
+        <button className="btn btn-primary mb-3">Add Post</button>
+      </Link>
       {data2.map((post) => (
         <>
           <div className="card mb-3" key={post.id}>

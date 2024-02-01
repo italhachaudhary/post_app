@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Details from "./components/Details";
 import { BrowserRouter } from "react-router-dom";
 import Banner from "./components/Banner";
+import AddPost from "./components/AddPost";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Banner />} />
         <Route path="/details/:id" element={<Details />} />
+        <Route path="/addPost" element={<AddPost />} />
       </Routes>
     </BrowserRouter>
   );
