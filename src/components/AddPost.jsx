@@ -4,7 +4,6 @@ export default function AddPost() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [userId, setUserId] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,26 +13,15 @@ export default function AddPost() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (response.ok) {
-          setSuccessMessage("Post submitted successfully!");
-          console.log(response);
-        } else {
-          throw new Error("Failed to submit post.");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        setSuccessMessage("Failed to submit post.");
-      });
+    }).then((response) => {
+      console.log(response);
+    });
   };
 
   return (
     <div>
       <form className="container addPost" onSubmit={handleSubmit}>
         <h1 className="text-center">Add Post</h1>
-        {successMessage && <p>{successMessage}</p>}
         <div className="mb-3">
           <label className="form-label">Title</label>
           <input
@@ -58,7 +46,6 @@ export default function AddPost() {
             type="number"
             className="form-control"
             onChange={(e) => setUserId(e.target.value)}
-            id="exampleInputPassword1"
             required
           />
         </div>

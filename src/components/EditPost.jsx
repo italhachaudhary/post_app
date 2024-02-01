@@ -16,6 +16,20 @@ export default function EditPost() {
     setBody(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = { title, body };
+    console.log(data);
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      console.log(response);
+    });
+  };
+
   return (
     <div>
       <div className="container">
@@ -43,7 +57,9 @@ export default function EditPost() {
               onChange={handleBodyChange}
             />
           </div>
-          <button className="btn btn-primary">Update</button>
+          <button className="btn btn-primary" onClick={handleSubmit}>
+            Update
+          </button>
         </form>
       </div>
     </div>
