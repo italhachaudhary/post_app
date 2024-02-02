@@ -4,10 +4,11 @@ export default function AddPost() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [userId, setUserId] = useState("");
+  const [id, setId] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { title, body, userId };
+    const data = { title, body, userId, id };
     console.log(data);
     fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
@@ -20,7 +21,7 @@ export default function AddPost() {
 
   return (
     <div>
-      <form className="container addPost" onSubmit={handleSubmit}>
+      <form className="container addPost">
         <h1 className="text-center">Add Post</h1>
         <div className="mb-3">
           <label className="form-label">Title</label>
@@ -49,7 +50,20 @@ export default function AddPost() {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <div className="mb-3">
+          <label className="form-label">ID</label>
+          <input
+            type="number"
+            className="form-control"
+            onChange={(e) => setId(e.target.value)}
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          onClick={handleSubmit}
+        >
           Submit
         </button>
       </form>
