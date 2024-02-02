@@ -35,7 +35,8 @@
 
 /* AddPost */
 
-.addPost label {
+.addPost label,
+.editPost label {
   color: black;
   font-weight: 600;
 }

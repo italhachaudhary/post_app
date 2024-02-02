@@ -32,7 +32,7 @@ export default function EditPost() {
 
   return (
     <div>
-      <div className="container">
+      <div className="container editPost">
         <h1 className="text-center">Edit Post</h1>
         <form action="">
           <div className="mb-3">
