@@ -7,12 +7,16 @@ export default function PostData() {
   const [confirm, setConfirm] = useState(false);
   const [postIdToDelete, setPostIdToDelete] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [start, setStart] = useState(0);
+  const [limit] = useState(10);
 
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       axios
-        .get("https://jsonplaceholder.typicode.com/posts")
+        .get(
+          `https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`
+        )
         .then((response) => {
           setData2(response.data);
           setLoading(false);
@@ -22,7 +26,7 @@ export default function PostData() {
           setLoading(false);
         });
     }, 1000);
-  }, []);
+  }, [start, limit]);
 
   const deleteCard = (id) => {
     const newData = data2.filter((current) => current.id !== id);
@@ -96,6 +100,20 @@ export default function PostData() {
           </>
         ))
       )}
+      <div>
+        <button
+          className="btn btn-primary mb-3"
+          onClick={() => setStart(start - limit)}
+        >
+          Previous
+        </button>
+        <button
+          className="btn btn-primary ms-5 mb-3 "
+          onClick={() => setStart(start + limit)}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
