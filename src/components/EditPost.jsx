@@ -9,6 +9,7 @@ export default function EditPost() {
 
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
+  const [id, setId] = useState(post.id);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -36,6 +37,10 @@ export default function EditPost() {
     setBody(e.target.value);
   };
 
+  const handleIdChange = (e) => {
+    setId(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -51,6 +56,21 @@ export default function EditPost() {
 
     if (!body) {
       setError("Please enter a body.");
+      return;
+    }
+
+    if (title.length < 5) {
+      setError("Title must be at least 5 characters long.");
+      return;
+    }
+
+    if (body.length > 500) {
+      setError("Body must be less than 500 characters long.");
+      return;
+    }
+
+    if (!id || id <= 0) {
+      setError("Please enter a valid ID.");
       return;
     }
 
@@ -83,8 +103,8 @@ export default function EditPost() {
               Back
             </button>
           </Link>
-          {error && <div className="alert alert-danger">{error}</div>}
-          <form action="">
+          {error && <div className="alert alert-danger mt-2">{error}</div>}
+          <form onSubmit={handleSubmit}>
             <div className="mb-3 mt-3">
               <label htmlFor="" className="form-label">
                 Title
@@ -94,6 +114,8 @@ export default function EditPost() {
                 className="form-control"
                 value={title}
                 onChange={handleTitleChange}
+                required
+                minLength={5}
               />
             </div>
             <div className="mb-3">
@@ -107,9 +129,18 @@ export default function EditPost() {
                 onChange={handleBodyChange}
               />
             </div>
-            <button className="btn btn-primary" onClick={handleSubmit}>
-              Update
-            </button>
+            <div className="mb-3">
+              <label htmlFor="" className="form-label">
+                ID
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                value={id}
+                onChange={handleIdChange}
+              />
+            </div>
+            <button className="btn btn-primary">Update</button>
           </form>
         </div>
       )}

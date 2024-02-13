@@ -101,18 +101,18 @@ export default function PostData() {
         ))
       )}
       <div>
-        <button
-          className="btn btn-primary mb-3"
-          onClick={() => setStart(start - limit)}
+        <select
+          name=""
+          id=""
+          className="mb-3 btn btn-primary"
+          onChange={(e) => setStart(Number(e.target.value))}
         >
-          Previous
-        </button>
-        <button
-          className="btn btn-primary ms-5 mb-3 "
-          onClick={() => setStart(start + limit)}
-        >
-          Next
-        </button>
+          <option value="0">10</option>
+          <option value="10">20</option>
+          <option value="20">30</option>
+          <option value="30">40</option>
+          <option value="40">50</option>
+        </select>
       </div>
     </div>
   );
