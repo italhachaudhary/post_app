@@ -8,7 +8,7 @@ export default function PostData() {
   const [postIdToDelete, setPostIdToDelete] = useState(null);
   const [loading, setLoading] = useState(true);
   const [start, setStart] = useState(0);
-  const [limit] = useState(10);
+  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
     setLoading(true);
@@ -105,13 +105,13 @@ export default function PostData() {
           name=""
           id=""
           className="mb-3 btn btn-primary"
-          onChange={(e) => setStart(Number(e.target.value))}
+          onChange={(e) => setLimit(Number(e.target.value))}
         >
-          <option value="0">10</option>
-          <option value="10">20</option>
-          <option value="20">30</option>
-          <option value="30">40</option>
-          <option value="40">50</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
         </select>
       </div>
     </div>
