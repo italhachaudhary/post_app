@@ -102,8 +102,6 @@ export default function PostData() {
       )}
       <div>
         <select
-          name=""
-          id=""
           className="mb-3 btn btn-primary"
           onChange={(e) => setLimit(Number(e.target.value))}
         >
