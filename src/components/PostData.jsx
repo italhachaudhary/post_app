@@ -107,10 +107,16 @@ export default function PostData() {
         >
           <option value="10">10</option>
           <option value="20">20</option>
-          <option value="30">30</option>
           <option value="50">50</option>
           <option value="100">100</option>
         </select>
+
+        <button
+          className="btn mb-3 btn-primary ms-2"
+          onClick={() => setLimit(limit + 10)}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
